@@ -1,8 +1,7 @@
 **** 
 
 
-### Ex. No. :8 CONFIGURING ANALOG PORT TO INTEFACE AN ANALOG SENSOR AND READ THE VALUES USING SERIAL PORT
-## Date: 
+### Ex. No. :8 CONFIGURING ANALOG PORT TO INTEFACE AN ANALOG SENSOR AND READ THE VALUES USING SERIAL PORT 
 ###  
 
 ## Aim: 
@@ -150,15 +149,45 @@ This module also includes a potentiometer that will fix the threshold value, & t
 
 
 ##  Program 
+```
+Name: Karthikeyan R
+Reg.NO: 212222240046
+```
+```
+#include "main.h"
+#include"stdio.h"
+uint32_t adcvalue;
+#if defined (_ICCARM) || defined (_ARMCC_VERSION)
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#elif defined(_GNUC_)
+   
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#endif  
 
+while(1)
+{
 
- 
+	HAL_ADC_Start(&hadc1);
+			HAL_ADC_PollForConversion(&hadc1,100);
+			adcvalue = HAL_ADC_GetValue(&hadc1);
+			HAL_ADC_Stop(&hadc1);
+			HAL_Delay(500);
+			printf("ADC VALUE:%ld\n",adcvalue);
 
-## Result :
- 
+}
+
+PUTCHAR_PROTOTYPE
+{
+
+  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+
+  return ch;
+}
+``` 
 ## Output  :
 
-
+## Result :
+Hence,the configuring analog port to inteface an analog sensor and read the values using serial port runned successfully.
 
 
 
